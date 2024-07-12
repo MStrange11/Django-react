@@ -11,7 +11,6 @@ function App() {
     async function getAllStudent() {
       try {
         const students = await axios.get('http://127.0.0.1:8000/api/student')
-        // console.log(students.data);
         setStudents(students.data)
       } catch (error) {
         console.log(error);
