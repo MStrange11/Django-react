@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from .serializers import StudentSerializer, Student
-from rest_framework.generics import ListAPIView
+from rest_framework import viewsets
+from .models import Player
+from .serializers import PlayerSerializer
 
-# Create your views here.
-class StudentList(ListAPIView):
-    queryset = Student.objects.all()
-    serializer_class = StudentSerializer
+class PlayerViewsets(viewsets.ModelViewSet):
+    queryset = Player.objects.all()
+    serializer_class = PlayerSerializer

@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from .models import Student
+from .models import Player
 
-class StudentSerializer(serializers.ModelSerializer):
+class PlayerSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Student
-        fields = ['id','stuName','email']
+        model = Player
+        fields = '__all__'
