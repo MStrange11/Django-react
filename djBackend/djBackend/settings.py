@@ -102,18 +102,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ] 
 
-# REST_FRAMEWORK = {
-#     # bacis authentication
-#     # 'DEFAULT_AUTHENTICATION_CLASSES': [
-#     #     'rest_framework.authentication.BasicAuthentication',
-#     #     'rest_framework.authentication.SessionAuthentication',
-#     # ]
+REST_FRAMEWORK = {
+    # bacis authentication
+    # 'DEFAULT_AUTHENTICATION_CLASSES': [
+    #     'rest_framework.authentication.BasicAuthentication',
+    #     'rest_framework.authentication.SessionAuthentication',
+    # ]
 
-#     # JWT authentication
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework_simplejwt.authentication.JWTAuthentication',
-#     )
-# }
+    # JWT authentication
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
 
 
 # Internationalization

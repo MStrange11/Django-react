@@ -3,8 +3,9 @@ import React, { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 
 const ClientForm = ({ setClients, fetchData }) => {
+  const [mytoken, setMytoken] = useState({ access: "" });
   const [newClient, setNewClient] = useState({
-    userName: "",
+    username: "",
     // email: "",
     password: "",
     // userID: "",
@@ -16,15 +17,22 @@ const ClientForm = ({ setClients, fetchData }) => {
     //   ...newClient,
     //   userID: newID,
     // };
-    const updatedClient = newClient  
+    const updatedClient = newClient;
     setNewClient(updatedClient);
     postClient(updatedClient);
   };
 
   const postClient = async (clientData) => {
     try {
-      await axios.post("http://127.0.0.1:8000/register/", clientData);
-      console.log("post :", clientData);
+      const response = await axios.post(
+        "http://127.0.0.1:8000/register/",
+        clientData
+      );
+      console.log("post data:", clientData.data);
+      console.log("response data:", response.data);
+      setMytoken({
+        access: response.data.access,
+      });
       setNewClient({
         username: "",
         // email: "",
@@ -39,13 +47,22 @@ const ClientForm = ({ setClients, fetchData }) => {
 
   return (
     <div className="grid grid-flow-rol border border-black">
+      <div className="token">
+        <h6 className=" w-5">
+          {mytoken.access
+            ? mytoken.access.length > 0
+              ? mytoken.access
+              : "no token"
+            : "waiting for token"}
+        </h6>
+      </div>
       <input
         type="text"
         placeholder="enter name"
         className="input input-bordered w-full max-w-xs m-4"
-        value={newClient.userName}
+        value={newClient.username}
         onChange={(e) => {
-          setNewClient((prev) => ({ ...prev, userName: e.target.value }));
+          setNewClient((prev) => ({ ...prev, username: e.target.value }));
         }}
       />
       <input
