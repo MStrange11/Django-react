@@ -3,6 +3,7 @@ from django.urls import path, include
 from .views import *
 
 urlpatterns = [
+    path('nc/',ServerView.as_view()),
 
     path('g-stu/<id>/',StudentGeneric2.as_view()),
     path('g-stu/',StudentGeneric.as_view()),
