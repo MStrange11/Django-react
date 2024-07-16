@@ -5,30 +5,31 @@ import { v4 as uuid } from "uuid";
 const ClientForm = ({ setClients, fetchData }) => {
   const [newClient, setNewClient] = useState({
     userName: "",
-    email: "",
+    // email: "",
     password: "",
-    userID: "none",
+    // userID: "",
   });
 
   const generateID = () => {
-    const newID = uuid();
-    const updatedClient = {
-      ...newClient,
-      userID: newID,
-    };
+    // const newID = uuid();
+    // const updatedClient = {
+    //   ...newClient,
+    //   userID: newID,
+    // };
+    const updatedClient = newClient  
     setNewClient(updatedClient);
     postClient(updatedClient);
   };
 
   const postClient = async (clientData) => {
     try {
-      await axios.post("http://127.0.0.1:8000/api/clients/", clientData);
+      await axios.post("http://127.0.0.1:8000/register/", clientData);
       console.log("post :", clientData);
       setNewClient({
-        userName: "",
-        email: "",
+        username: "",
+        // email: "",
         password: "",
-        userID: "none",
+        // userID: "none",
       });
       fetchData(); // Ensure fetchData is defined and works correctly
     } catch (error) {
@@ -52,9 +53,9 @@ const ClientForm = ({ setClients, fetchData }) => {
         placeholder="email"
         className="input input-bordered w-full max-w-xs m-4"
         value={newClient.email}
-        onChange={(e) => {
-          setNewClient((prev) => ({ ...prev, email: e.target.value }));
-        }}
+        // onChange={(e) => {
+        //   setNewClient((prev) => ({ ...prev, email: e.target.value }));
+        // }}
       />
       <input
         type="password"
@@ -66,7 +67,7 @@ const ClientForm = ({ setClients, fetchData }) => {
         }}
       />
       <button className="btn m-3 max-w-32 " onClick={generateID}>
-        Add
+        Register
       </button>
     </div>
   );

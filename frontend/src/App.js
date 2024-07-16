@@ -4,6 +4,7 @@ import axios from "axios";
 import "./App.css";
 import Table from "./components/table";
 import ClientForm from "./components/clientFrom";
+import Login from "./components/login";
 
 function App() {
   const [clients, setClients] = useState([]);
@@ -15,8 +16,8 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:8000/api/clients/");
-      // console.log(res);
+      const res = await axios.get("http://127.0.0.1:8000/g-stu/");
+      console.log(res);
       setClients(res.data);
       setisLoading(false);
     } catch (error) {
@@ -30,6 +31,7 @@ function App() {
         <h1 className="text-5xl text-center pb-12">Connect React to Django</h1>
       </nav>
       <ClientForm setClients={setClients} fetchData={fetchData} />
+      <Login />
       <Table clients={clients} setClients={setClients} isLoading={isLoading} />
     </div>
   );

@@ -16,7 +16,7 @@ const Table = ({ clients, setClients, isLoading }) => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://127.0.0.1:8000/api/clients/${id}/`);
+      await axios.delete(`http://127.0.0.1:8000/g-stu/${id}/`);
       const newList = clients.filter((client) => client.id !== id);
       setClients(newList);
     } catch (error) {
@@ -27,7 +27,7 @@ const Table = ({ clients, setClients, isLoading }) => {
   const handleEdit = async (id, value) => {
     try {
       const response = await axios.patch(
-        `http://127.0.0.1:8000/api/clients/${id}/`,
+        `http://127.0.0.1:8000/g-stu/${id}/`,
         value
       );
       console.log(response.data);
@@ -66,10 +66,10 @@ const Table = ({ clients, setClients, isLoading }) => {
               username
             </th>
             <th className="p-3 text-sm font-semibold tracking-wide text-left">
-              email
+              age
             </th>
             <th className="p-3 text-sm font-semibold tracking-wide text-left">
-              userID
+              father name
             </th>
             <th className="p-3 text-sm font-semibold tracking-wide text-left">
               Action
@@ -89,9 +89,9 @@ const Table = ({ clients, setClients, isLoading }) => {
                         <MdOutlineCheckBox onClick={()=>handleCheckbox(client.id)}/>
                       </span>
                     </td>
-                    <td className="p-3 text-sm">{client.userName}</td>
-                    <td className="p-3 text-sm">{client.email}</td>
-                    <td className="p-3 text-sm">{client.userID}</td>
+                    <td className="p-3 text-sm">{client.name}</td>
+                    <td className="p-3 text-sm">{client.age}</td>
+                    <td className="p-3 text-sm">{client.father_name}</td>
                     <td className="p-3 text-sm font-medium grid grid-flow-col items-center mt-5">
                       <span>
                         <label htmlFor="my-modal">
