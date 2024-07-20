@@ -108,7 +108,7 @@ class StudentAPI(APIView):
             return Response({'status': 403, 'error': serializer.errors, 'message': 'something went wrong'})
 
         serializer.save()
-        return Response({'status': 200, "payload": serializer.data, "message": 'data saved'})
+        return Response({'status': 200, "payload": serializer.data,"request":data, "message": 'data saved'})
 
     def put(self, request):
         try:
@@ -143,8 +143,13 @@ class StudentAPI(APIView):
             return Response({'status': 403, 'error': e, 'message': 'invalid ID'})
 
     def delete(self, request):
+        print(request.data)
         try:
-            Student_obj = Student.objects.get(id=request.data['id'])
+            id = request.data.get('id')
+            if id is None:
+                raise serializers.ErrorDetail({'error': "id feild missing"})
+            
+            Student_obj = Student.objects.get(id=id)
             Student_obj.delete()
             return Response({'status': 200, "message": 'data deleted'})
         except Exception as e:
