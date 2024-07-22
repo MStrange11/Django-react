@@ -66,9 +66,7 @@ class UpdateUserProfileView(APIView):
 
         profile_data = {key: data[key] for key in self.can_patch if key in data}
         if not profile_data:
-            return Response({"status":"No field match"},status=status.HTTP_204_NO_CONTENT)
-        
-
+            return Response({"error":"No field match"},status=status.HTTP_204_NO_CONTENT)
 
         profile = UserProfile.objects.get(user=user)
         profile_serializer = UserProfileSerializer(profile, data=profile_data, partial=True)
@@ -77,7 +75,7 @@ class UpdateUserProfileView(APIView):
             profile_serializer.save()
             print(profile_serializer.data)
             response_data = {key: profile_serializer.data[key] for key in profile_serializer.data if key in data}
-            return Response({"data": response_data}, status=status.HTTP_200_OK)
+            return Response(response_data, status=status.HTTP_200_OK)
         
         print(profile_serializer.data)
         print(profile_serializer.is_valid())
